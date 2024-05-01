@@ -1,1 +1,31 @@
-server down , try after some time 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Audio</title>
+    
+  <style>
+    img {
+            max-width: 100%;
+            height: auto;
+        }
+  </style>
+</head>
+
+<body>
+    <button onclick="playSoundAndDisplayImage()" style=" color : indianred ; height : 50px; margin-left : 100px; margin-top: 200px" > Tap Here For Wrong Results</button>
+    <script>
+        function playSoundAndDisplayImage() {
+            // Play sound
+            var audio = new Audio('moye.mp3');
+            audio.play();
+
+            // Display image
+            var image = document.createElement('img');
+            image.src = 'moye.png';
+            document.body.appendChild(image);
+        }
+    </script>
+</body>
+</html>
