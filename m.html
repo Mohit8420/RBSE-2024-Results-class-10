@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f6e5c3;
+            color: #2f6697;
+        }
+
+        h1 {
+            color: #2f6697;
+            font-weight: bold;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 1px solid #2f6697;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .percentage {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Result</h1>
+    <p>Name: Mayank Soni<span id="name"></span></p>
+    <p>Roll Number: 1909261 <span id="rollNumber"></span></p>
+    <p>School Name: Guru Nanak Public School</p>
+    <table>
+        <tr>
+            <th>Subject Name</th>
+            <th>Theory</th>
+            <th>Sessional</th>
+            <th>Th + Ss</th>
+            <th>Total</th>
+        </tr>
+        <tr id="hindi">
+            <td>Hindi</td>
+            <td id="hindi_theory"></td>
+            <td id="hindi_sessional"></td>
+            <td id="hindi_th_ss"></td>
+            <td id="hindi_total"></td>
+        </tr>
+        <tr id="english">
+            <td>English</td>
+            <td id="english_theory"></td>
+            <td id="english_sessional"></td>
+            <td id="english_th_ss"></td>
+            <td id="english_total"></td>
+        </tr>
+        <tr id="math">
+            <td>Math</td>
+            <td id="math_theory"></td>
+            <td id="math_sessional"></td>
+            <td id="math_th_ss"></td>
+            <td id="math_total"></td>
+        </tr>
+        <tr id="science">
+            <td>Science</td>
+            <td id="science_theory"></td>
+            <td id="science_sessional"></td>
+            <td id="science_th_ss"></td>
+            <td id="science_total"></td>
+        </tr>
+        <tr id="social_studies">
+            <td>Social Studies</td>
+            <td id="social_studies_theory"></td>
+            <td id="social_studies_sessional"></td>
+            <td id="social_studies_th_ss"></td>
+            <td id="social_studies_total"></td>
+        </tr>
+        <tr id="sanskrit">
+            <td>Sanskrit</td>
+            <td id="sanskrit_theory"></td>
+            <td id="sanskrit_sessional"></td>
+            <td id="sanskrit_th_ss"></td>
+            <td id="sanskrit_total"></td>
+        </tr>
+        <tr>
+            <td colspan="4">Percentage:</td>
+            <td id="percentage" class="percentage"></td>
+        </tr>
+    </table>
+
+    <script>
+        // Get parameters from URL
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        const rollNumber = params.get('rollNumber');
+
+        // Set name and roll number
+        document.getElementById('name').innerText = name;
+        document.getElementById('rollNumber').innerText = rollNumber;
+
+        // Function to calculate percentage
+        // Function to calculate percentage
+// Function to calculate percentage
+function calculatePercentage() {
+    let totalMarks = 0;
+    const subjects = ['hindi', 'english', 'math', 'science', 'social_studies', 'sanskrit'];
+    subjects.forEach(subject => {
+        const total = parseInt(document.getElementById(subject + '_total').innerText);
+        totalMarks += total;
+    });
+
+    const percentage = (totalMarks / 600) * 100;
+    document.getElementById('percentage').innerText = percentage.toFixed(2) + '%';
+}
+
+
+        // Populate results
+        const results = {
+            'hindi': { theory: 55, sessional: 20 },
+            'english': { theory: 65, sessional: 15 },
+            'math': { theory: 37, sessional: 20 },
+            'science': { theory: 48, sessional: 20 },
+            'social_studies': { theory: 36, sessional: 20 },
+            'sanskrit': { theory: 63, sessional: 20 }
+        };
+
+        Object.keys(results).forEach(subject => {
+            const totalTheory = results[subject].theory;
+            const totalSessional = results[subject].sessional;
+            const totalThSs = totalTheory + totalSessional;
+            const total = totalThSs;
+            
+            document.getElementById(subject + '_theory').innerText = totalTheory;
+            document.getElementById(subject + '_sessional').innerText = totalSessional;
+            document.getElementById(subject + '_th_ss').innerText = totalThSs;
+            document.getElementById(subject + '_total').innerText = total;
+        });
+
+        // Calculate and display percentage
+        calculatePercentage();
+    </script>
+</body>
+</html>
